@@ -1,30 +1,36 @@
-import { StyleSheet } from 'react-native';
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
+import { View, FlatList, Text } from "react-native";
+import { useState } from "react";
+import Header from "../components/header";
+import ListItem from "../components/list-item";
+import Form from "../components/form";
 
 export default function TabOneScreen() {
+  const [listOfItems, setListOfItems] = useState([
+    { text: "Купить молоко", id: "1" },
+    { text: "Купить картошку", id: "2" },
+    { text: "Купить машину", id: "3" },
+    { text: "Стать миллионером", id: "4" },
+  ]);
+
+  function fetchTextFromComponent(text: string) {
+    setListOfItems((list) => [{ text: text, id: Math.random().toString().substring(7) }, ...list]);
+  }
+
+  function deleteHandler(key: string) {
+    setListOfItems((list) => list.filter(({ id }) => id !== key));
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Fucking tab one</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View>
+      <Header />
+      <Form fetchTextFromComponent={fetchTextFromComponent} />
+      <View>
+        <FlatList
+          data={listOfItems}
+          renderItem={({ item }) => <ListItem item={item} deleteHandler={deleteHandler} />}
+          keyExtractor={({ id }) => id}
+        />
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
