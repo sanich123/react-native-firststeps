@@ -11,8 +11,10 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   main: {
-    paddingTop: 60,
-    height: 100,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
     backgroundColor: "silver",
   },
   text: {

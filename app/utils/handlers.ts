@@ -11,12 +11,11 @@ export const handleButtonClick = () =>
     { cancelable: true }
   );
 
-
 export const handleButtonClick2 = () => {
-    Alert.alert("Some prompt", "Some text", [
-        {
-            text: "Submit",
-            onPress: (text) => console.log(text),
-        },
-    ]);
+  Alert.alert("Some prompt", "Some text", [
+    {
+      text: "Submit",
+      onPress: (text) => console.log(text),
+    },
+  ]);
 };

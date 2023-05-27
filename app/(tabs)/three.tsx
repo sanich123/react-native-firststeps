@@ -4,6 +4,7 @@ import { styles } from "../styles/three-tab-styles";
 import { anotherStyles } from "../styles/another-styles";
 import { handleButtonClick, handleButtonClick2 } from "../utils/handlers";
 
+
 export default function TabThree() {
   const { container, textStyles, box } = styles;
   const { text } = anotherStyles;
@@ -15,7 +16,6 @@ export default function TabThree() {
           another fucking text
         </Text>
       </View>
-
       <Button title="Жмяк меня" color="red" onPress={handleButtonClick} />
       <Button title="Prompt click" color="yellow" onPress={handleButtonClick2} />
       <TouchableWithoutFeedback onPress={handleButtonClick}>
